@@ -13,7 +13,7 @@ An Enterprise-grade ASP.NET Core Web API built with Clean Architecture / N-Tier 
 
 ## 🛠 Tech Stack
 
-- **.NET 10 / C#**
+- **.NET 8 / C#**
 - **ASP.NET Core Web API**
 - **Entity Framework Core (SQL Server)**
 - **ASP.NET Core Identity**
