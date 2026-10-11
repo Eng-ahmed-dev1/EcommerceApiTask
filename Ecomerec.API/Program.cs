@@ -6,7 +6,9 @@ using Ecomerec.DAL.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,15 +27,16 @@ builder.Services.AddScoped<ICartitemservice,Cartitemservice>();
 builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>().AddEntityFrameworkStores<ApplicationContext>();
 builder.Services.AddAuthentication(o =>
 {
-    o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    o.DefaultAuthenticateScheme = "default";
+    o.DefaultChallengeScheme = "default";
 
-}).AddJwtBearer(o =>
-{   
+}).AddJwtBearer("default",o =>
+{
     o.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
     {
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("AhmedAlaaAhmedAlistrongpasswordandstrongsercretkey")),
         ValidateIssuer = false,
-        ValidateLifetime =true,
+        ValidateLifetime = true,
     };
 });
 

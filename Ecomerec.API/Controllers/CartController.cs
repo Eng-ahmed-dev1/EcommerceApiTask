@@ -2,6 +2,7 @@
 using Ecomerec.BLL.Exceptions;
 using Ecomerec.BLL.Services.CartItemServices;
 using Ecomerec.BLL.Services.CartServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecomerec.API.Controllers
@@ -18,6 +19,7 @@ namespace Ecomerec.API.Controllers
             _cartservice = cartservice;
             _cartitemservice = cartitemservice;
         }
+        [Authorize]
         [HttpGet("GetById")]
         public async Task<ActionResult<CartReadDTO>> GetById([FromQuery] int id)
         {
@@ -30,8 +32,9 @@ namespace Ecomerec.API.Controllers
                 return BadRequest(ex?.Message);
             }
         }
+        [Authorize]
         [HttpGet("GetByUserId")]
-        public async Task<ActionResult<CartReadDTO>> GetByUserId([FromRoute] int userId)
+        public async Task<ActionResult<CartReadDTO>> GetByUserId([FromQuery] int userId)
         {
             try
             {
@@ -42,6 +45,7 @@ namespace Ecomerec.API.Controllers
                 return BadRequest(ex?.Message);
             }
         }
+        
         [HttpGet("Clear-Cart")]
         public async Task<ActionResult<bool>> ClearCart(int userId)
         {
