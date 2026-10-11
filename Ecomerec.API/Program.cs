@@ -19,24 +19,24 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Conn")));
-builder.Services.AddScoped<IProductRepository,ProductRepository>();
-builder.Services.AddScoped<IProductService,ProductService>();
-builder.Services.AddScoped<ICartRepository,CartRepository>();
-builder.Services.AddScoped<ICartService,CartService>();
-builder.Services.AddScoped<ICartitemservice,Cartitemservice>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICartRepository, CartRepository>();
+builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<ICartitemservice, Cartitemservice>();
 builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>().AddEntityFrameworkStores<ApplicationContext>();
 builder.Services.AddAuthentication(o =>
 {
     o.DefaultAuthenticateScheme = "default";
     o.DefaultChallengeScheme = "default";
 
-}).AddJwtBearer("default",o =>
+}).AddJwtBearer("default", o =>
 {
-    o.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    o.TokenValidationParameters = new TokenValidationParameters
     {
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("AhmedAlaaAhmedAlistrongpasswordandstrongsercretkey")),
         ValidateIssuer = false,
-        ValidateLifetime = true,
+        ValidateAudience = false
     };
 });
 

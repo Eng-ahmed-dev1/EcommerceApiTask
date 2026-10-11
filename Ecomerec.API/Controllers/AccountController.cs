@@ -33,7 +33,7 @@ namespace Ecomerec.API.Controllers
                 PhoneNumber = dto.Phone,
                 Cart = new Cart()
             };
-            var result = await _userManager.CreateAsync(user,dto.Password);
+            var result = await _userManager.CreateAsync(user, dto.Password);
             if (!result.Succeeded)
             {
                 return BadRequest(new
