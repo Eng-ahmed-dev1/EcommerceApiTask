@@ -12,10 +12,7 @@ namespace Ecomerec.DAL
             _context = context;
         }
 
-        public void Add(Cart cart)
-        {
-            _context.Carts.Add(cart);
-        }
+       
         public async Task<IEnumerable<Cart>> GetAllAsync()
         {
             return await _context.Carts
@@ -48,7 +45,6 @@ namespace Ecomerec.DAL
         {
             return _context.SaveChangesAsync();
         }
-
         public void Update(Cart cart)
         {
             _context.Update(cart);

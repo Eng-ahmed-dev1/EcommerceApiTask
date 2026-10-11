@@ -8,7 +8,6 @@ namespace Ecomerec.DAL
         Task<IEnumerable<Cart>> GetAllAsync();
         Task<Cart?> GetByIdAsync(int id);
         Task<Cart?> GetByUserIdAsync(int userId);
-        void Add(Cart cart);
         void Update(Cart cart);
         Task<int> SaveChangesAsync();
 

@@ -101,7 +101,13 @@ namespace Ecomerec.DAL.Migrations
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Carts");
                 });
@@ -299,6 +305,17 @@ namespace Ecomerec.DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Ecomerec.DAL.Cart", b =>
+                {
+                    b.HasOne("Ecomerec.DAL.ApplicationUser", "User")
+                        .WithOne("Cart")
+                        .HasForeignKey("Ecomerec.DAL.Cart", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Ecomerec.DAL.CartItem", b =>
                 {
                     b.HasOne("Ecomerec.DAL.Cart", "Cart")
@@ -366,6 +383,12 @@ namespace Ecomerec.DAL.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Ecomerec.DAL.ApplicationUser", b =>
+                {
+                    b.Navigation("Cart")
                         .IsRequired();
                 });
 

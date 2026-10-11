@@ -68,7 +68,6 @@ namespace Ecomerec.BLL.Services.CartItemServices
                 throw new BllException("This CartItem is not found ..!");
             else
             {
-
                 cart.cartItems.Remove(existCart);
                 cart.TotalPrice -= existCart.UnitPrice * existCart.Quantity;
             }

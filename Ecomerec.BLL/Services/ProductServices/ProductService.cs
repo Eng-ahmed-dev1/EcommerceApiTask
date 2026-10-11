@@ -1,9 +1,6 @@
-using System.Drawing.Printing;
-using Azure;
 using Ecomerec.BLL.DTOs;
 using Ecomerec.BLL.Exceptions;
 using Ecomerec.DAL;
-using Microsoft.Identity.Client.AppConfig;
 
 namespace Ecomerec.BLL.Services.ProductServices
 {
