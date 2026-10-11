@@ -33,7 +33,7 @@ namespace Ecomerec.DAL.Data
             .HasMany(x => x.cartItems)
             .WithOne(c => c.Cart)
             .HasForeignKey(x => x.CartId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
 
             C
             .HasOne(x => x.User)

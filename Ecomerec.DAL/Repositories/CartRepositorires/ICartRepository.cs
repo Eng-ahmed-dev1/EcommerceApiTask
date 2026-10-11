@@ -9,6 +9,7 @@ namespace Ecomerec.DAL
         Task<Cart?> GetByIdAsync(int id);
         Task<Cart?> GetByUserIdAsync(int userId);
         void Update(Cart cart);
+        void ClearCart(Cart cart);
         Task<int> SaveChangesAsync();
 
     }

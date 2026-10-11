@@ -49,5 +49,11 @@ namespace Ecomerec.DAL
         {
             _context.Update(cart);
         }
+
+        public void ClearCart(Cart cart)
+        {
+            _context.CartItems.RemoveRange(cart.cartItems);
+            cart.TotalPrice = 0;
+        }
     }
 }

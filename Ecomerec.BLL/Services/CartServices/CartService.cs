@@ -65,14 +65,13 @@ namespace Ecomerec.BLL.Services.CartServices
 
         public async Task<bool> ClearAsync(int id)
         {
-            var cart = await _context.GetByIdAsync(id);
+            var cart = await _context.GetByIdAsync(id) ?? await _context.GetByUserIdAsync(id);
             if (cart is null)
             {
                 throw new BllException("This Cart Is Not Found , Invalid Cart Id");
             }
 
-            cart.cartItems.Clear();
-            cart.TotalPrice = 0;
+            _context.ClearCart(cart);
             _context.Update(cart);
             await _context.SaveChangesAsync();
             return true;
